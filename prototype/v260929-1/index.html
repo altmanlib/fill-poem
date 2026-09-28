@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>填字组诗 · 示例</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='8' fill='%239E2B25'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23F7EFDD' font-family='serif' font-weight='bold'%3E诗%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+  :root{
+    --paper:#F2E9D8;
+    --paper-deep:#E9DCC2;
+    --paper-bright:#FBF6E9;
+    --ink:#26251F;
+    --ink-soft:#56534A;
+    --ink-faint:rgba(38,37,31,.45);
+    --vermilion:#9E2B25;
+    --vermilion-deep:#7E201C;
+    --orange:#E89A3C;
+    --teal:#3E5C58;
+    --gold:#B08A3E;
+    --serif:"Noto Serif SC","Songti SC","SimSun","STSong",serif;
+    --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    background:#191612;
+    color:var(--ink);
+    font-family:var(--sans);
+    display:flex;justify-content:center;
+    background-image:
+      radial-gradient(circle at 20% 15%, rgba(158,43,37,.14), transparent 42%),
+      radial-gradient(circle at 85% 90%, rgba(62,92,88,.18), transparent 46%),
+      linear-gradient(160deg,#201C14,#14110D 70%);
+  }
+  .stage{
+    position:relative;
+    width:min(100%,430px);
+    min-height:100dvh;
+    overflow:hidden;
+    background-color:var(--paper);
+    background-image:url('https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Ur3obhz1SoDVYXxmtFFcq21Rnph');
+    background-size:cover;
+    background-position:center top;
+    box-shadow:0 0 60px rgba(0,0,0,.55);
+  }
+  /* 纸纹与可读性遮罩 */
+  .stage::before{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(circle at 50% 8%, rgba(251,246,233,.5), transparent 42%),
+      linear-gradient(180deg, rgba(242,233,216,.92) 0%, rgba(242,233,216,.45) 26%, rgba(242,233,216,.32) 46%, rgba(242,233,216,.55) 74%, rgba(242,233,216,.94) 100%);
+  }
+  .stage::after{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(38,37,31,.02) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(38,37,31,.015) 0 1px, transparent 1px 4px);
+  }
+  .view{position:relative;z-index:2;min-height:100dvh;display:none;flex-direction:column}
+  .view.active{display:flex}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  button:focus-visible{outline:2px solid var(--vermilion);outline-offset:2px}
+
+  /* ===== 水墨点缀 ===== */
+  .mist{position:absolute;z-index:1;pointer-events:none;filter:blur(14px);border-radius:50%;
+    background:radial-gradient(ellipse, rgba(251,246,233,.85), rgba(251,246,233,0) 70%);}
+  .mist.m1{width:340px;height:120px;top:16%;left:-90px}
+  .mist.m2{width:300px;height:110px;top:60%;right:-80px;animation-delay:2s}
+  @keyframes drift{0%,100%{transform:translateX(0)}50%{transform:translateX(26px)}}
+  .mist{animation:drift 9s ease-in-out infinite}
+  .seal{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:6px;background:var(--vermilion);
+    color:#F7EFDD;font-family:var(--serif);font-weight:900;font-size:20px;
+    box-shadow:inset 0 0 0 2px rgba(247,239,221,.55), 0 2px 5px rgba(0,0,0,.2);
+    transform:rotate(-4deg);letter-spacing:0;
+  }
+
+  /* ===== 开始页 ===== */
+  .start{padding:18px 24px;justify-content:space-between;align-items:center}
+  .start-head{text-align:center;margin-top:6vh}
+  .start-head .seal{margin-bottom:18px}
+  .start-title{
+    font-family:var(--serif);font-weight:900;
+    font-size:clamp(40px,12vw,52px);letter-spacing:.28em;text-indent:.28em;
+    color:var(--ink);text-shadow:0 1px 0 rgba(251,246,233,.8);
+  }
+  .start-sub{margin-top:14px;font-size:14px;letter-spacing:.42em;text-indent:.42em;color:var(--ink-soft);font-weight:500}
+  .ink-rule{width:72%;height:2px;margin:20px auto 0;background:linear-gradient(90deg,transparent,var(--ink-soft),transparent);position:relative}
+  .ink-rule::after{content:"";position:absolute;left:50%;top:-3px;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:var(--vermilion)}
+  .rules-card{
+    margin-top:26px;background:rgba(251,246,233,.88);border:1px solid rgba(38,37,31,.18);
+    border-radius:14px;padding:18px 20px;box-shadow:0 6px 18px rgba(38,37,31,.14);
+  }
+  .rules-card li{
+    list-style:none;display:flex;align-items:flex-start;gap:12px;
+    font-size:14.5px;line-height:1.7;color:var(--ink-soft);padding:6px 0;
+  }
+  .rules-card li .no{
+    flex:none;width:22px;height:22px;border-radius:50%;background:var(--vermilion);color:#F7EFDD;
+    font-family:var(--serif);font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:3px;
+  }
+  .start-foot{width:100%;text-align:center;padding-bottom:6vh}
+  .btn-primary{
+    width:100%;max-width:300px;height:52px;border-radius:12px;
+    background:linear-gradient(180deg,var(--vermilion),var(--vermilion-deep));
+    color:#F7EFDD;font-size:17px;font-weight:700;letter-spacing:.35em;text-indent:.35em;
+    box-shadow:0 6px 16px rgba(126,32,28,.35), inset 0 1px 0 rgba(255,255,255,.22);
+  }
+  .btn-primary:active{transform:translateY(1px) scale(.99)}
+  .start-note{margin-top:16px;font-size:11.5px;color:var(--ink-faint);letter-spacing:.12em}
+
+  /* ===== 答题页 ===== */
+  .play-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 6px}
+  .head-chip{
+    font-size:12.5px;color:var(--ink-soft);background:rgba(251,246,233,.85);
+    border:1px solid rgba(38,37,31,.18);border-radius:999px;padding:6px 12px;letter-spacing:.08em;
+  }
+  .head-center{text-align:center;flex:1}
+  .timer{
+    font-family:var(--serif);font-weight:700;font-size:34px;line-height:1;color:var(--ink);
+  }
+  .timer.warn{color:var(--vermilion)}
+  .progress{font-size:13px;color:var(--ink-soft);letter-spacing:.2em;margin-top:3px}
+  .play-clue{text-align:center;font-size:13.5px;color:var(--ink-soft);letter-spacing:.14em;margin-top:10px}
+  .play-clue b{color:var(--vermilion);font-weight:700}
+
+  .grid-wrap{padding:12px 20px 4px}
+  .grid{
+    display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(7,1fr);gap:7px;
+    background:rgba(251,246,233,.16);border-radius:16px;padding:12px;
+    border:1px solid rgba(251,246,233,.35);
+    box-shadow:0 8px 26px rgba(38,37,31,.18);
+  }
+  .cell{
+    min-width:0;min-height:0;width:100%;height:100%;aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:700;font-size:clamp(18px,6.2vw,30px);
+    border-radius:7px;visibility:hidden;position:relative;
+  }
+  .cell.active{visibility:visible;background:rgba(251,246,233,.94);box-shadow:inset 0 0 0 1px rgba(38,37,31,.16)}
+  .cell.prefill{color:var(--ink)}
+  .cell.blank{background:rgba(251,246,233,.72);box-shadow:inset 0 0 0 1.5px dashed var(--ink-faint);cursor:pointer;color:transparent}
+  .cell.blank.empty::after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(38,37,31,.22)}
+  .cell.filled{color:var(--ink);box-shadow:inset 0 0 0 1.5px solid rgba(38,37,31,.55);cursor:pointer;background:var(--paper-bright)}
+  .cell.selected{background:var(--orange);box-shadow:inset 0 0 0 2px solid var(--ink)}
+  .cell.wrong{color:var(--vermilion);background:#F4D6CB;animation:shake .45s}
+  .cell.right{background:#DCE4D0}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}50%{transform:translateX(4px)}75%{transform:translateX(-2px)}}
+
+  .pool{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;padding:14px 16px 4px}
+  .char-btn{
+    width:clamp(40px,11.2vw,48px);height:clamp(40px,11.2vw,48px);
+    background:var(--paper-bright);border:1px solid rgba(38,37,31,.28);
+    border-radius:9px;font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink);
+    box-shadow:0 3px 7px rgba(38,37,31,.16);
+    transition:transform .08s;
+  }
+  .char-btn:active{transform:scale(.92)}
+  .char-btn.used{opacity:.32;pointer-events:none;border-style:dashed}
+
+  .actions{display:flex;gap:12px;padding:16px 20px 22px;margin-top:auto}
+  .btn-hint,.btn-submit{flex:1;height:50px;border-radius:12px;font-size:15.5px;font-weight:700;letter-spacing:.12em}
+  .btn-hint{background:rgba(251,246,233,.92);color:var(--ink);border:1.5px solid var(--ink-soft);box-shadow:0 4px 10px rgba(38,37,31,.15)}
+  .btn-hint:disabled{opacity:.45;pointer-events:none}
+  .btn-submit{background:linear-gradient(180deg,var(--vermilion),var(--vermilion-deep));color:#F7EFDD;box-shadow:0 6px 14px rgba(126,32,28,.32), inset 0 1px 0 rgba(255,255,255,.22)}
+  .btn-submit:active,.btn-hint:active{transform:translateY(1px) scale(.99)}
+
+  /* ===== 结算页 ===== */
+  .result{justify-content:center;align-items:center;padding:30px 26px;text-align:center}
+  .result-card{
+    width:100%;background:rgba(251,246,233,.92);border:1px solid rgba(38,37,31,.2);
+    border-radius:18px;padding:30px 26px;box-shadow:0 12px 34px rgba(38,37,31,.24);
+    position:relative;
+  }
+  .result-card::before{content:"";position:absolute;inset:10px;border:1px solid rgba(158,43,37,.4);border-radius:12px;pointer-events:none}
+  .result-seal{
+    width:46px;height:46px;border-radius:8px;background:var(--vermilion);color:#F7EFDD;
+    font-family:var(--serif);font-weight:900;font-size:24px;display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 0 0 2px rgba(247,239,221,.55),0 3px 8px rgba(0,0,0,.22);
+    transform:rotate(-6deg);margin:0 auto 12px;
+  }
+  .result-kicker{font-size:12.5px;letter-spacing:.4em;text-indent:.4em;color:var(--ink-soft)}
+  .result-name{font-family:var(--serif);font-weight:900;font-size:clamp(38px,11vw,46px);margin-top:8px;color:var(--ink)}
+  .result-dynasty{
+    display:inline-block;margin-top:10px;padding:5px 14px;border-radius:999px;
+    background:var(--teal);color:#F3EDDD;font-size:13px;letter-spacing:.18em;
+  }
+  .result-quote{margin-top:18px;font-family:var(--serif);font-size:15.5px;color:var(--ink-soft);line-height:1.9}
+  .result-quote::before,.result-quote::after{color:var(--vermilion);font-weight:700}
+  .result-quote::before{content:"「";margin-right:2px}
+  .result-quote::after{content:"」";margin-left:2px}
+  .stars{margin-top:16px;font-size:22px;letter-spacing:6px;color:var(--gold)}
+  .stars .off{opacity:.25}
+  .result-score{margin-top:12px;font-size:13px;color:var(--ink-soft)}
+  .result-score b{font-family:var(--serif);font-size:19px;color:var(--vermilion)}
+  .result-btns{display:flex;gap:12px;margin-top:24px}
+  .result-btns .btn-hint{max-width:none}
+  .result-note{margin-top:16px;font-size:11.5px;color:var(--ink-faint);letter-spacing:.1em}
+
+  /* Toast */
+  .toast{
+    position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(14px);
+    z-index:50;background:rgba(38,37,31,.92);color:#F7EFDD;font-size:13.5px;letter-spacing:.06em;
+    padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;max-width:82%;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (prefers-reduced-motion: reduce){
+    .mist,.char-btn,.btn-primary,.btn-submit,.btn-hint,.cell.wrong{animation:none;transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="mist m1"></div>
+  <div class="mist m2"></div>
+
+  <!-- ===== 视图：开始 ===== -->
+  <section id="view-start" class="view start active">
+    <div class="start-head">
+      <div class="seal">诗</div>
+      <h1 class="start-title">填字组诗</h1>
+      <p class="start-sub">诗词填字闯关 · 示例</p>
+      <div class="ink-rule"></div>
+    </div>
+    <div class="rules-card">
+      <ul>
+        <li><span class="no">1</span>每道题限时 120 秒，横、竖两句各缺数字，需填入正确汉字。</li>
+        <li><span class="no">2</span>先点选方格，再点下方候选字；点已填的字可清除重填。</li>
+        <li><span class="no">3</span>三题全部完成后，揭晓你的「前世文豪」身份。</li>
+      </ul>
+    </div>
+    <div class="start-foot">
+      <button class="btn-primary" id="btn-start">开始答题</button>
+      <p class="start-note">演示用示例 · 数据为示例诗词</p>
+    </div>
+  </section>
+
+  <!-- ===== 视图：答题 ===== -->
+  <section id="view-play" class="view play">
+    <div class="play-head">
+      <span class="head-chip" id="chip-hint">提示 0/2</span>
+      <div class="head-center">
+        <div class="timer" id="timer">120</div>
+        <div class="progress" id="progress">第 1 / 3 题</div>
+      </div>
+      <span class="head-chip" id="chip-score">得分 0</span>
+    </div>
+    <p class="play-clue" id="clue">—</p>
+    <div class="grid-wrap">
+      <div class="grid" id="grid"></div>
+    </div>
+    <div class="pool" id="pool"></div>
+    <div class="actions">
+      <button class="btn-hint" id="btn-hint">分享得提示</button>
+      <button class="btn-submit" id="btn-submit">提交</button>
+    </div>
+  </section>
+
+  <!-- ===== 视图：结算 ===== -->
+  <section id="view-result" class="view result">
+    <div class="result-card">
+      <div class="result-seal" id="r-seal">文</div>
+      <p class="result-kicker">你的前世文豪</p>
+      <h2 class="result-name" id="r-name">—</h2>
+      <span class="result-dynasty" id="r-dynasty">—</span>
+      <p class="result-quote" id="r-quote">—</p>
+      <div class="stars" id="r-stars"></div>
+      <p class="result-score">本次得分 <b id="r-score">0</b> 分</p>
+      <div class="result-btns">
+        <button class="btn-hint" id="btn-share">分享海报</button>
+        <button class="btn-submit" id="btn-again">再来一局</button>
+      </div>
+      <p class="result-note">示例游戏 · 文豪对应为趣味设定</p>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  /* ===== 题目数据（示例）===== */
+  var PUZZLES = [
+    {
+      clue:'崔颢《黄鹤楼》',
+      h:'昔人已乘黄鹤去',
+      v:'此地空余黄鹤楼',
+      rowH:5, colV:5,
+      hBlanks:[3,4,5,6],
+      vBlanks:[3,4,7],
+      distractors:['白','云','千']
+    },
+    {
+      clue:'苏轼《题西林壁》',
+      h:'不识庐山真面目',
+      v:'只缘身在此山中',
+      rowH:6, colV:4,
+      hBlanks:[3,4,5,6],
+      vBlanks:[2,3,5,6],
+      distractors:['高','低','远']
+    },
+    {
+      clue:'张若虚《春江花月夜》',
+      h:'春江潮水连海平',
+      v:'海上明月共潮生',
+      rowH:1, colV:6,
+      hBlanks:[3,4,5,6],
+      vBlanks:[1,4,5,7],
+      distractors:['夜','云','花']
+    }
+  ];
+  var TIME_PER_Q = 120;
+
+  var state = {
+    q:0, timeLeft:TIME_PER_Q, timerId:null, hints:0,
+    sumScore:0, correct:0, cells:{}, selected:null,
+    locked:false
+  };
+  var gridEl=document.getElementById('grid'),
+      poolEl=document.getElementById('pool'),
+      timerEl=document.getElementById('timer'),
+      progressEl=document.getElementById('progress'),
+      clueEl=document.getElementById('clue'),
+      hintChip=document.getElementById('chip-hint'),
+      scoreChip=document.getElementById('chip-score'),
+      toastEl=document.getElementById('toast'),
+      btnHint=document.getElementById('btn-hint'),
+      btnSubmit=document.getElementById('btn-submit');
+
+  /* ===== 工具 ===== */
+  function p(i){ return i-1; }
+  function blankKeys(pz){
+    var keys=[], r0=p(pz.rowH), c0=p(pz.colV), i;
+    for(i=0;i<7;i++){
+      if(pz.hBlanks.indexOf(i+1)>=0) keys.push(r0+'-'+i);
+      if(pz.vBlanks.indexOf(i+1)>=0) keys.push(i+'-'+c0);
+    }
+    return keys.filter(function(k,i,arr){ return arr.indexOf(k)===i; });
+  }
+  function charAt(pz,r,c){
+    if(r===p(pz.rowH)) return pz.h.charAt(c);
+    if(c===p(pz.colV)) return pz.v.charAt(r);
+    return '';
+  }
+  function isBlank(k){ return state.blankKeys.indexOf(k)>=0; }
+  function usedChars(){ return Object.keys(state.cells).map(function(k){return state.cells[k];}); }
+  function shuffle(arr){
+    var a=arr.slice(),i,j,t;
+    for(i=a.length-1;i>0;i--){ j=Math.floor(Math.random()*(i+1)); t=a[i];a[i]=a[j];a[j]=t; }
+    return a;
+  }
+  var toastTimer=null;
+  function toast(msg){
+    toastEl.textContent=msg; toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){ toastEl.classList.remove('show'); },2200);
+  }
+
+  /* ===== 视图切换 ===== */
+  function showView(name){
+    ['view-start','view-play','view-result'].forEach(function(id){
+      document.getElementById(id).classList.toggle('active', id==='view-'+name);
+    });
+  }
+
+  /* ===== 格子渲染 ===== */
+  function renderGrid(){
+    var pz=PUZZLES[state.q], html='', r,c,k,cls,val;
+    state.blankKeys=blankKeys(pz);
+    for(r=0;r<7;r++){
+      for(c=0;c<7;c++){
+        k=r+'-'+c;
+        cls='cell';
+        if(r===p(pz.rowH)||c===p(pz.colV)){
+          cls+=' active';
+          if(isBlank(k)){
+            cls+=' blank';
+            if(state.cells[k]) cls+=' filled';
+            else cls+=' empty';
+            if(state.selected===k) cls+=' selected';
+            if(state.wrongs && state.wrongs.indexOf(k)>=0) cls+=' wrong';
+            if(state.rights && state.rights.indexOf(k)>=0) cls+=' right';
+            val=state.cells[k]||'';
+          }else{
+            cls+=' prefill';
+            val=charAt(pz,r,c);
+          }
+        }
+        html+='<div class="'+cls+'" data-k="'+k+'">'+val+'</div>';
+      }
+    }
+    gridEl.innerHTML=html;
+  }
+
+  /* ===== 候选字渲染 ===== */
+  function renderPool(){
+    var used=usedChars(), html='', i;
+    for(i=0;i<state.pool.length;i++){
+      var ch=state.pool[i];
+      html+='<button class="char-btn'+(used.indexOf(ch)>=0?' used':'')+'" data-ch="'+ch+'">'+ch+'</button>';
+    }
+    poolEl.innerHTML=html;
+  }
+
+  /* ===== 顶部信息 ===== */
+  function renderHead(){
+    timerEl.textContent=state.timeLeft+'s';
+    timerEl.classList.toggle('warn', state.timeLeft<=20);
+    progressEl.textContent='第 '+(state.q+1)+' / 3 题';
+    clueEl.innerHTML='<b>'+PUZZLES[state.q].clue+'</b> · 横竖两句，缺字待补';
+    hintChip.textContent='提示 '+state.hints+'/2';
+    scoreChip.textContent='得分 '+state.sumScore;
+    btnHint.disabled=state.hints>=2;
+  }
+
+  /* ===== 计时 ===== */
+  function startTimer(){
+    stopTimer();
+    state.timerId=setInterval(tick,1000);
+  }
+  function stopTimer(){ if(state.timerId){ clearInterval(state.timerId); state.timerId=null; } }
+  function tick(){
+    if(state.locked) return;
+    state.timeLeft--;
+    renderHead();
+    if(state.timeLeft<=0){ timeout(); }
+  }
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden) stopTimer();
+    else if(isPlaying() && !state.locked && state.timeLeft>0) startTimer();
+  });
+  function isPlaying(){ return document.getElementById('view-play').classList.contains('active'); }
+
+  /* ===== 交互：格子 ===== */
+  gridEl.addEventListener('click',function(e){
+    var t=e.target.closest('.cell'); if(!t) return;
+    var k=t.dataset.k; if(state.locked||!isBlank(k)) return;
+    if(state.cells[k]){
+      delete state.cells[k]; state.selected=null;
+    }else{
+      state.selected=(state.selected===k)?null:k;
+    }
+    renderGrid(); renderPool();
+  });
+
+  /* ===== 交互：候选字 ===== */
+  poolEl.addEventListener('click',function(e){
+    var t=e.target.closest('.char-btn'); if(!t||state.locked) return;
+    var ch=t.dataset.ch;
+    if(usedChars().indexOf(ch)>=0){ toast('该字已用过'); return; }
+    var target=state.selected, i, keys=state.blankKeys;
+    if(!target || !isBlank(target)){
+      for(i=0;i<keys.length;i++){ if(!state.cells[keys[i]]){ target=keys[i]; break; } }
+      if(!target){ toast('没有空格可填'); return; }
+    }
+    state.cells[target]=ch; state.selected=null;
+    renderGrid(); renderPool();
+  });
+
+  /* ===== 提示（模拟分享）===== */
+  btnHint.addEventListener('click',function(){
+    if(state.locked) return;
+    var keys=state.blankKeys, empty=keys.filter(function(k){return !state.cells[k];});
+    if(empty.length===0){ toast('空格已全部填好'); return; }
+    var pz=PUZZLES[state.q], k=empty[Math.floor(Math.random()*empty.length)];
+    state.cells[k]=charAt(pz,+k.split('-')[0],+k.split('-')[1]);
+    state.hints++; state.selected=null;
+    toast('模拟分享成功，获得 1 次提示');
+    renderGrid(); renderPool(); renderHead();
+  });
+
+  /* ===== 提交 ===== */
+  btnSubmit.addEventListener('click',function(){ submit(); });
+  function submit(){
+    if(state.locked) return;
+    var pz=PUZZLES[state.q], keys=state.blankKeys, i, k;
+    var empty=keys.filter(function(x){return !state.cells[x];});
+    if(empty.length){ toast('还有空格未填完'); return; }
+    var wrongs=[], rights=[];
+    for(i=0;i<keys.length;i++){
+      k=keys[i];
+      if(state.cells[k]===charAt(pz,+k.split('-')[0],+k.split('-')[1])) rights.push(k);
+      else wrongs.push(k);
+    }
+    if(wrongs.length){
+      state.wrongs=wrongs; state.rights=null;
+      renderGrid();
+      toast('有 '+wrongs.length+' 个字不对，再想想');
+      setTimeout(function(){ if(!state.locked){ state.wrongs=null; renderGrid(); } },700);
+      return;
+    }
+    state.locked=true; stopTimer();
+    state.rights=rights; state.wrongs=null;
+    renderGrid();
+    state.correct++;
+    state.sumScore+=100+state.timeLeft;
+    renderHead();
+    toast('答对了！');
+    setTimeout(advance,1300);
+  }
+
+  /* ===== 超时 ===== */
+  function timeout(){
+    if(state.locked) return;
+    state.locked=true; stopTimer();
+    var pz=PUZZLES[state.q], keys=state.blankKeys, i,k;
+    for(i=0;i<keys.length;i++){
+      k=keys[i];
+      if(!state.cells[k]) state.cells[k]=charAt(pz,+k.split('-')[0],+k.split('-')[1]);
+    }
+    renderGrid(); renderPool();
+    toast('时间到，已展示答案');
+    setTimeout(advance,2000);
+  }
+
+  /* ===== 推进与结算 ===== */
+  function advance(){
+    state.locked=false; state.selected=null;
+    state.wrongs=state.rights=null;
+    state.cells={};
+    state.timeLeft=TIME_PER_Q;
+    if(state.q+1>=PUZZLES.length){ finish(); return; }
+    state.q++;
+    state.pool=buildPool();
+    startTimer(); renderGrid(); renderPool(); renderHead();
+  }
+  function finish(){
+    var finalScore=Math.max(0,state.sumScore-state.hints*30);
+    var hero;
+    if(finalScore>=400) hero={name:'诗仙 · 李白',dynasty:'唐代',quote:'天生我材必有用，千金散尽还复来。'};
+    else if(finalScore>=250) hero={name:'诗圣 · 杜甫',dynasty:'唐代',quote:'会当凌绝顶，一览众山小。'};
+    else if(finalScore>=120) hero={name:'诗佛 · 王维',dynasty:'唐代',quote:'行到水穷处，坐看云起时。'};
+    else if(finalScore>=40) hero={name:'东坡居士 · 苏轼',dynasty:'宋代',quote:'竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。'};
+    else hero={name:'五柳先生 · 陶渊明',dynasty:'晋代',quote:'采菊东篱下，悠然见南山。'};
+    var stars='';
+    for(var s=0;s<3;s++) stars+='<span class="'+(s<state.correct?'':'off')+'">★</span>';
+    document.getElementById('r-name').textContent=hero.name;
+    document.getElementById('r-dynasty').textContent=hero.dynasty;
+    document.getElementById('r-quote').textContent=hero.quote;
+    document.getElementById('r-score').textContent=finalScore;
+    document.getElementById('r-stars').innerHTML=stars;
+    showView('result');
+  }
+
+  /* ===== 开始 / 再来 ===== */
+  function buildPool(){
+    var pz=PUZZLES[state.q], keys=blankKeys(pz), ans=[], i,k,ch;
+    for(i=0;i<keys.length;i++){
+      k=keys[i]; ch=charAt(pz,+k.split('-')[0],+k.split('-')[1]);
+      if(ans.indexOf(ch)<0) ans.push(ch);
+    }
+    return shuffle(ans.concat(pz.distractors.slice()));
+  }
+  function setupRound(){
+    state.pool=buildPool();
+    renderGrid(); renderPool(); renderHead();
+  }
+  document.getElementById('btn-start').addEventListener('click',function(){
+    resetAll(); showView('play'); setupRound(); startTimer();
+  });
+  document.getElementById('btn-again').addEventListener('click',function(){
+    resetAll(); showView('play'); setupRound(); startTimer();
+  });
+  document.getElementById('btn-share').addEventListener('click',function(){
+    toast('示例环境：已模拟分享海报');
+  });
+  function resetAll(){
+    state.q=0; state.timeLeft=TIME_PER_Q; state.hints=0; state.sumScore=0; state.correct=0;
+    state.cells={}; state.selected=null; state.locked=false; state.wrongs=state.rights=null;
+    stopTimer();
+  }
+  /* __AUTOSTART_FOR_SHOT__ */
+})();
+</script>
+</body>
+</html>

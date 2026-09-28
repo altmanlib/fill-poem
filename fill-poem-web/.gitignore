@@ -12,19 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Env
-.env
-.env.*
-!.env.example
-
-# Go
-fill-poem-api/bin/
-fill-poem-api/build/
-*.exe
-*.test
-*.out
-coverage.out
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

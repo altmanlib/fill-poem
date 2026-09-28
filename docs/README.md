@@ -17,7 +17,15 @@ updated: 2026-09-29
 | 强制条款 | front matter 四项齐备；`title` 与 `# 标题` 一致；相对链接可解析 |
 | 本地差异 | 无 |
 
-## 2. 目录
+## 2. 仓库结构
+
+| 路径 | 说明 |
+|---|---|
+| `fill-poem-web` | 前端（Vite） |
+| `fill-poem-api` | 后端（Go，`github.com/altmanlib/fill-poem/fill-poem-api`） |
+| `prototype` | 早期原型，仅供参考 |
+
+## 3. 文档目录
 
 | 路径 | 说明 |
 |---|---|

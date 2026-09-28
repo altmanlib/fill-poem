@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea
+.vscode
+build
+coverage.out
+coverage.html
+*.pem
+*.key
+scripts
+*.md
+!README.md

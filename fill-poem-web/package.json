@@ -1,12 +1,12 @@
 {
-  "name": "fill-poem",
+  "name": "fill-poem-web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite --host --port 17327",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --host --port 17327"
   },
   "devDependencies": {
     "vite": "^8.3.0"

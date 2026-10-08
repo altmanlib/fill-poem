@@ -2,6 +2,8 @@
 
 移动端 H5 填字组诗互动页 Monorepo。
 
+甲方：中国金币（CHNGC）。路径：`~/code/fishx/chngc/fill-poem`。同客户其他项目见 `~/code/fishx/chngc/`。
+
 ## 目录
 
 | 路径 | 说明 |

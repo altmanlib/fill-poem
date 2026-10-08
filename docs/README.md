@@ -2,7 +2,7 @@
 title: 文档索引
 type: guide
 status: published
-updated: 2026-09-29
+updated: 2026-10-08
 ---
 
 # 文档索引
@@ -15,7 +15,7 @@ updated: 2026-09-29
 |---|---|
 | 适用范围 | `docs/` 下全部子目录中的 `.md`；本索引本身也遵守 |
 | 强制条款 | front matter 四项齐备；`title` 与 `# 标题` 一致；相对链接可解析 |
-| 本地差异 | 无 |
+| 本地差异 | `docs/briefs/` 可保留原始 PDF/图片附件；Markdown 摘要仍遵守上表强制条款 |
 
 ## 2. 仓库结构
 
@@ -30,3 +30,5 @@ updated: 2026-09-29
 | 路径 | 说明 |
 |---|---|
 | [design/2026-09-29-01-user-flow.md](design/2026-09-29-01-user-flow.md) | 用户流程与页面状态机 |
+| [briefs/2026-10-08-01-panda-coin-h5-brief.md](briefs/2026-10-08-01-panda-coin-h5-brief.md) | 2027 熊猫金币上新互动 H5 创意方案摘要 |
+| [briefs/2027熊猫金币上新互动H5创意方案.pdf](briefs/2027熊猫金币上新互动H5创意方案.pdf) | 创意方案原件（PDF） |

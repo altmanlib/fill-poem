@@ -2,6 +2,7 @@
 // feature modules import `config` instead of touching import.meta.env directly.
 
 const DEFAULT_LOADING_MS = 1800;
+const DEFAULT_LOADING_TIMEOUT_MS = 15000;
 const DEFAULT_BGM_TRACK = 'music/03-loop-A-51s-128k.mp3';
 const DEFAULT_BGM_VOLUME = 0.18;
 
@@ -25,6 +26,8 @@ function readMs(value: string | undefined, fallback: number): number {
 export const config = {
   /** Splash / loading page minimum duration in milliseconds. */
   loadingMs: readMs(import.meta.env.VITE_LOADING_MS, DEFAULT_LOADING_MS),
+  /** Longest wait for first-screen assets before the loading page offers a retry. */
+  loadingTimeoutMs: readMs(import.meta.env.VITE_LOADING_TIMEOUT_MS, DEFAULT_LOADING_TIMEOUT_MS),
 
   bgm: {
     /** Resolved URL for HTMLAudioElement.src; path under public/, overridable via VITE_BGM_TRACK. */

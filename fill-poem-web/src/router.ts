@@ -1,5 +1,5 @@
-import { transitions } from './anim/transition.ts';
-import { h, nextFrame } from './lib/dom.ts';
+import { transitions } from '#/anim/transition.ts';
+import { h, nextFrame } from '#/lib/dom.ts';
 import type { PageContext, PageFactory, PageInstance, RouteName, TransitionName } from './types.ts';
 
 interface RouterOpts {

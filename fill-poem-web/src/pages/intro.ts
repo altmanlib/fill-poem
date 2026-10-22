@@ -1,8 +1,8 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { h } from '../lib/dom.ts';
-import { ph } from '../lib/ph.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { h } from '#/lib/dom.ts';
+import { ph } from '#/lib/ph.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 export function createIntroPage({ go }: PageContext): PageInstance {
   const title = h('h1', { class: 'intro__title' }, ['2027版熊猫贵金属纪念币', h('br'), '现已正式发行']);

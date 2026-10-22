@@ -1,14 +1,14 @@
-import { bgm } from './lib/bgm.ts';
-import { clearDebugParams, readDebugRoute } from './lib/debug.ts';
-import { createStore } from './lib/store.ts';
-import { createCombinePage } from './pages/combine.ts';
-import { createHomePage } from './pages/home.ts';
-import { createIntroPage } from './pages/intro.ts';
-import { createLeadPage } from './pages/lead.ts';
-import { createLoadingPage } from './pages/loading.ts';
-import { createLotteryPage } from './pages/lottery.ts';
-import { createRulesPage } from './pages/rules.ts';
-import { createStagePage } from './pages/stage.ts';
+import { bgm } from '#/lib/bgm.ts';
+import { clearDebugParams, readDebugRoute } from '#/lib/debug.ts';
+import { createStore } from '#/lib/store.ts';
+import { createCombinePage } from '#/pages/combine.ts';
+import { createHomePage } from '#/pages/home.ts';
+import { createIntroPage } from '#/pages/intro.ts';
+import { createLeadPage } from '#/pages/lead.ts';
+import { createLoadingPage } from '#/pages/loading.ts';
+import { createLotteryPage } from '#/pages/lottery.ts';
+import { createRulesPage } from '#/pages/rules.ts';
+import { createStagePage } from '#/pages/stage.ts';
 import { createRouter } from './router.ts';
 import type { AppState, PageFactory, RouteName } from './types.ts';
 

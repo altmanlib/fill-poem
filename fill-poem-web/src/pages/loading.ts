@@ -1,10 +1,10 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { config } from '../config.ts';
-import { imageManifest } from '../lib/asset-manifest.ts';
-import { h } from '../lib/dom.ts';
-import { waitUntilReady } from '../lib/readiness.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { config } from '#/config.ts';
+import { imageManifest } from '#/lib/asset-manifest.ts';
+import { h } from '#/lib/dom.ts';
+import { waitUntilReady } from '#/lib/readiness.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 // The splash stays at least this long; slower real loading takes priority.
 const MIN_DURATION = config.loadingMs;

@@ -1,5 +1,5 @@
 import { expect, test, vi } from 'vitest';
-import { createStore } from '../src/lib/store.ts';
+import { createStore } from '#/lib/store.ts';
 
 test('set merges the patch, freezes state and notifies subscribers', () => {
   const store = createStore({ stage: 0, badges: 0 });

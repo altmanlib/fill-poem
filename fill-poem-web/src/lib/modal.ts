@@ -1,4 +1,4 @@
-import { pop } from '../anim/motion.ts';
+import { pop } from '#/anim/motion.ts';
 import { h } from './dom.ts';
 import { sfx } from './sfx.ts';
 

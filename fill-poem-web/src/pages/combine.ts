@@ -1,8 +1,8 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { h } from '../lib/dom.ts';
-import { ph } from '../lib/ph.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { h } from '#/lib/dom.ts';
+import { ph } from '#/lib/ph.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 export function createCombinePage({ go }: PageContext): PageInstance {
   const art = ph({ asset: 'combine/coin', className: 'combine__art', ratio: '750 / 800' });

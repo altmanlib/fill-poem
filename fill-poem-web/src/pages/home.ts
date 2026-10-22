@@ -1,10 +1,10 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { STAGES } from '../game/stages.ts';
-import { h } from '../lib/dom.ts';
-import { ph } from '../lib/ph.ts';
-import { FLAG_RULES_SEEN, hasFlag } from '../lib/session-flag.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { STAGES } from '#/game/stages.ts';
+import { h } from '#/lib/dom.ts';
+import { ph } from '#/lib/ph.ts';
+import { FLAG_RULES_SEEN, hasFlag } from '#/lib/session-flag.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 export function createHomePage({ go, store }: PageContext): PageInstance {
   const prize = h(

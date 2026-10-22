@@ -1,6 +1,6 @@
 import { expect, test, vi } from 'vitest';
-import { createRouter } from '../src/router.ts';
-import type { PageFactory } from '../src/types.ts';
+import { createRouter } from '#/router.ts';
+import type { PageFactory } from '#/types.ts';
 
 function setup(back?: () => void) {
   const page: PageFactory = () => ({ el: document.createElement('div'), back });

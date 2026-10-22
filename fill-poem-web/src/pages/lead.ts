@@ -1,9 +1,9 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { type LeadForm, validateLead } from '../game/lead-form.ts';
-import { h } from '../lib/dom.ts';
-import { openModal } from '../lib/modal.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { type LeadForm, validateLead } from '#/game/lead-form.ts';
+import { h } from '#/lib/dom.ts';
+import { openModal } from '#/lib/modal.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 const NOTES = [
   '请认真填写收货信息，确保奖品准确送达',

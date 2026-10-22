@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { createStageSession } from '../src/game/stage-session.ts';
-import { answersOf, parseLine, STAGES } from '../src/game/stages.ts';
+import { createStageSession } from '#/game/stage-session.ts';
+import { answersOf, parseLine, STAGES } from '#/game/stages.ts';
 
 test('stage configs: blank counts are 1/2/3/4 and answers are candidates', () => {
   expect(STAGES.map((s) => answersOf(s).length)).toEqual([1, 2, 3, 4]);

@@ -1,5 +1,5 @@
 import { beforeEach, expect, test } from 'vitest';
-import { FLAG_RULES_SEEN, hasFlag, resetFlags, setFlag } from '../src/lib/session-flag.ts';
+import { FLAG_RULES_SEEN, hasFlag, resetFlags, setFlag } from '#/lib/session-flag.ts';
 
 beforeEach(resetFlags);
 

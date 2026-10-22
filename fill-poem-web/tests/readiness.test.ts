@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { waitUntilReady } from '../src/lib/readiness.ts';
+import { waitUntilReady } from '#/lib/readiness.ts';
 
 class FakeImage {
   onload: (() => void) | null = null;

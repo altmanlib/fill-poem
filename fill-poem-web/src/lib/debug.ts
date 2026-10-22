@@ -1,4 +1,4 @@
-import type { RouteName } from '../types.ts';
+import type { RouteName } from '#/types.ts';
 
 // Dev-only shortcut to jump to any route for visual QA: `?debug=lottery`.
 

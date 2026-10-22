@@ -1,10 +1,10 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { draw } from '../game/lottery.ts';
-import { h } from '../lib/dom.ts';
-import { openModal } from '../lib/modal.ts';
-import { ph } from '../lib/ph.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { draw } from '#/game/lottery.ts';
+import { h } from '#/lib/dom.ts';
+import { openModal } from '#/lib/modal.ts';
+import { ph } from '#/lib/ph.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 export function createLotteryPage({ store, go }: PageContext): PageInstance {
   const title = h('h1', { class: 'lottery__title' }, '助力国宝寻金赢首发好礼！');

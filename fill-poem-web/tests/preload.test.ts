@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { preloadImages } from '../src/lib/preload.ts';
+import { preloadImages } from '#/lib/preload.ts';
 
 class FakeImage {
   onload: (() => void) | null = null;

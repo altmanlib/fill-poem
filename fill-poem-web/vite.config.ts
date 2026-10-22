@@ -1,7 +1,12 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   base: './',
+  resolve: {
+    // Keep in sync with `paths` in tsconfig.json.
+    alias: [{ find: /^#\//, replacement: fileURLToPath(new URL('./src/', import.meta.url)) }]
+  },
   server: {
     host: true,
     port: 17327,

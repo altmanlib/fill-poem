@@ -1,8 +1,8 @@
-import { armEnter, fadeInUp } from '../anim/motion.ts';
-import { h } from '../lib/dom.ts';
-import { FLAG_RULES_SEEN, setFlag } from '../lib/session-flag.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { armEnter, fadeInUp } from '#/anim/motion.ts';
+import { h } from '#/lib/dom.ts';
+import { FLAG_RULES_SEEN, setFlag } from '#/lib/session-flag.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 // Copy follows the 1008 brief ("规则页文案"); keep in sync with docs/briefs.
 const RULES: ReadonlyArray<{ text: string; strong: string }> = [

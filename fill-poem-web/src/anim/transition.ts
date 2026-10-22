@@ -1,4 +1,4 @@
-import type { TransitionName } from '../types.ts';
+import type { TransitionName } from '#/types.ts';
 import { play } from './motion.ts';
 
 // Page transitions: (outgoingEl | null, incomingEl) => Promise.

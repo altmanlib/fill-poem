@@ -1,13 +1,13 @@
-import { fadeInUp } from '../anim/motion.ts';
-import { LOTTERY_CHANCES_ON_CLEAR } from '../game/lottery.ts';
-import { createStageSession, type StageSession } from '../game/stage-session.ts';
-import { parseLine, STAGES } from '../game/stages.ts';
-import { h } from '../lib/dom.ts';
-import { attachDrag } from '../lib/drag.ts';
-import { openModal } from '../lib/modal.ts';
-import { ph } from '../lib/ph.ts';
-import { sfx } from '../lib/sfx.ts';
-import type { PageContext, PageInstance } from '../types.ts';
+import { fadeInUp } from '#/anim/motion.ts';
+import { LOTTERY_CHANCES_ON_CLEAR } from '#/game/lottery.ts';
+import { createStageSession, type StageSession } from '#/game/stage-session.ts';
+import { parseLine, STAGES } from '#/game/stages.ts';
+import { h } from '#/lib/dom.ts';
+import { attachDrag } from '#/lib/drag.ts';
+import { openModal } from '#/lib/modal.ts';
+import { ph } from '#/lib/ph.ts';
+import { sfx } from '#/lib/sfx.ts';
+import type { PageContext, PageInstance } from '#/types.ts';
 
 const NUMERALS = ['一', '二', '三', '四'];
 

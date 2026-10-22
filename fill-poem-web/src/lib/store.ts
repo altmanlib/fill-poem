@@ -1,4 +1,4 @@
-import type { Store } from '../types.ts';
+import type { Store } from '#/types.ts';
 
 export function createStore<T extends object>(initial: T): Store<T> {
   let state: T = Object.freeze({ ...initial });

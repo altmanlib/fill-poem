@@ -4,7 +4,7 @@
 // WeChat JS bridge / first gesture as a fallback when the browser's autoplay
 // policy blocks the initial attempt (mobile Chrome/WeChat Android).
 
-import { config } from '../config.ts';
+import { config } from '#/config.ts';
 
 class BgmPlayer {
   private audio: HTMLAudioElement | null = null;

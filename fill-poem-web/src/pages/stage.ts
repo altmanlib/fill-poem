@@ -1,4 +1,5 @@
 import { fadeInUp } from '../anim/motion.ts';
+import { LOTTERY_CHANCES_ON_CLEAR } from '../game/lottery.ts';
 import { createStageSession, type StageSession } from '../game/stage-session.ts';
 import { parseLine, STAGES } from '../game/stages.ts';
 import { h } from '../lib/dom.ts';
@@ -92,8 +93,11 @@ export function createStagePage({ store, go }: PageContext): PageInstance {
       locked = true;
       const result = session.submit();
       if (result.ok) {
-        const badges = Math.max(store.get().badges, stage + 1);
-        store.set({ badges });
+        const prev = store.get();
+        const badges = Math.max(prev.badges, stage + 1);
+        // First full clear grants 3 lottery chances.
+        const granted = prev.badges < STAGES.length && badges >= STAGES.length ? LOTTERY_CHANCES_ON_CLEAR : 0;
+        store.set({ badges, chances: prev.chances + granted });
         await openModal(el, {
           title: '恭喜通关',
           text: clear.text,

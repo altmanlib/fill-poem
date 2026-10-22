@@ -9,7 +9,7 @@ function setup(back?: () => void) {
   const router = createRouter({
     root,
     routes: { loading: page, home: page, rules: page, stage: page, combine: page, intro: page, lottery: page, lead: page },
-    ctx: { store: { get: () => ({ stage: 0, badges: 0 }), set: () => {}, subscribe: () => () => {} } }
+    ctx: { store: { get: () => ({ stage: 0, badges: 0, chances: 0 }), set: () => {}, subscribe: () => () => {} } }
   });
   return router;
 }

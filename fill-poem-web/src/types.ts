@@ -13,6 +13,8 @@ export interface AppState {
   stage: number;
   /** Number of national-treasure gold badges collected (0..4). */
   badges: number;
+  /** Remaining lottery chances (client-side until the ledger API lands, R016). */
+  chances: number;
 }
 
 export interface PageContext {

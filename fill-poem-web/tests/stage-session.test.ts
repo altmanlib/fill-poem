@@ -16,7 +16,8 @@ test('parseLine numbers blanks from the given start', () => {
   ]);
 });
 
-const stage2 = STAGES[1]!;
+const stage2 = STAGES.find((s) => s.name === '品句寻韵');
+if (!stage2) throw new Error('stage 2 config missing');
 
 test('place fills in order, rejects used chars, remove frees the slot', () => {
   const s = createStageSession(stage2);

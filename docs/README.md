@@ -9,7 +9,7 @@ updated: 2026-10-08
 
 ## 1. 规范声明
 
-本仓库 `docs/` 下 Markdown 文档采纳 [项目文档格式规范](/Users/shasha/.pi/agent/guides/markdown-doc-format-spec.md)：
+本仓库 `docs/` 下 Markdown 文档采纳 [项目文档格式规范](~/.pi/agent/guides/markdown-doc-format-spec.md)：
 
 | 项 | 约定 |
 |---|---|

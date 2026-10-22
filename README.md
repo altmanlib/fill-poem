@@ -31,6 +31,8 @@ bun run dev       # :17327
 bun run verify    # typecheck + lint + test + build
 ```
 
+开发模式下 `http://localhost:17327/?debug=<route>` 直达指定页面，`route` 取 `home` / `rules` / `stage` / `combine` / `intro` / `lottery` / `lead`。
+
 ## 后端
 
 ```bash

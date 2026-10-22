@@ -8,8 +8,8 @@ export interface StageSession {
   readonly candidates: () => readonly string[];
   /** Filled characters per blank (null = empty). */
   readonly slots: () => ReadonlyArray<string | null>;
-  /** Fill the first empty blank with a candidate; false if it is used up or no blank is free. */
-  place: (char: string) => boolean;
+  /** Fill a blank with a candidate (the given slot, replacing its content, or else the first empty one); false if the char is used up or no blank is free. */
+  place: (char: string, slot?: number) => boolean;
   /** Return the character in a blank to the candidate pool. */
   remove: (slot: number) => void;
   isFull: () => boolean;
@@ -27,11 +27,11 @@ export function createStageSession(def: StageDef): StageSession {
     answers,
     candidates: () => candidates,
     slots: () => slots,
-    place(char) {
+    place(char, slot) {
       if (!candidates.includes(char) || slots.includes(char)) return false;
-      const free = slots.indexOf(null);
-      if (free < 0) return false;
-      slots[free] = char;
+      const target = slot ?? slots.indexOf(null);
+      if (target < 0 || target >= slots.length) return false;
+      slots[target] = char;
       return true;
     },
     remove(slot) {

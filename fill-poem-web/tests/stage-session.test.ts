@@ -45,3 +45,16 @@ test('wrong twice removes distractors; correct submit passes', () => {
   s.place('中');
   expect(s.submit()).toEqual({ ok: true });
 });
+
+test('place with a slot targets that blank and replaces its content', () => {
+  const s = createStageSession(stage2);
+  expect(s.place('章', 1)).toBe(true);
+  expect(s.slots()).toEqual([null, '章']);
+  expect(s.place('中', 1)).toBe(true);
+  expect(s.slots()).toEqual([null, '中']);
+  expect(s.place('散', 5)).toBe(false);
+});
+
+test('every stage line has a source', () => {
+  for (const st of STAGES) for (const l of st.lines) expect(l.source).not.toBe('');
+});

@@ -3,6 +3,7 @@ import { LOTTERY_CHANCES_ON_CLEAR } from '../game/lottery.ts';
 import { createStageSession, type StageSession } from '../game/stage-session.ts';
 import { parseLine, STAGES } from '../game/stages.ts';
 import { h } from '../lib/dom.ts';
+import { attachDrag } from '../lib/drag.ts';
 import { openModal } from '../lib/modal.ts';
 import { ph } from '../lib/ph.ts';
 import { sfx } from '../lib/sfx.ts';
@@ -33,13 +34,13 @@ export function createStagePage({ store, go }: PageContext): PageInstance {
     let blankStart = 0;
     const blankEls: HTMLElement[] = [];
     const lines = def.lines.map((line) => {
-      const segments = parseLine(line, blankStart);
+      const segments = parseLine(line.text, blankStart);
       const row = h(
         'p',
         { class: 'stage__line' },
         segments.map((seg) => {
           if (seg.kind === 'text') return seg.text;
-          const slot = h('button', { class: 'stage__blank', type: 'button', onclick: () => onRemove(seg.index) });
+          const slot = h('button', { class: 'stage__blank', type: 'button', dataset: { slot: String(seg.index) }, onclick: () => onRemove(seg.index) });
           blankEls[seg.index] = slot;
           blankStart += 1;
           return slot;
@@ -48,6 +49,7 @@ export function createStagePage({ store, go }: PageContext): PageInstance {
       return row;
     });
     const board = h('div', { class: 'stage__board' }, lines);
+    const sources = h('p', { class: 'stage__sources' }, def.lines.map((l) => l.source).join(' · '));
 
     const pool = h('div', { class: 'stage__pool' });
     const submit = h('button', { class: 'btn btn--primary', type: 'button', onclick: () => void onSubmit() }, '提交');
@@ -55,6 +57,7 @@ export function createStagePage({ store, go }: PageContext): PageInstance {
       tag,
       title,
       board,
+      sources,
       h('div', { class: 'stage__candidates' }, [h('span', { class: 'stage__label' }, '候选字'), pool]),
       submit
     ]);
@@ -69,17 +72,26 @@ export function createStagePage({ store, go }: PageContext): PageInstance {
       });
       pool.replaceChildren();
       for (const c of session.candidates()) {
-        const btn = h('button', { class: 'stage__char', type: 'button', onclick: () => onPlace(c) }, c);
+        const btn = h('button', { class: 'stage__char', type: 'button' }, c);
+        attachDrag(btn, { onTap: () => onPlace(c), onDrop: (x, y) => onDropChar(c, x, y) });
         btn.classList.toggle('is-used', slots.includes(c));
         pool.append(btn);
       }
       submit.toggleAttribute('disabled', !session.isFull());
     }
 
-    function onPlace(char: string): void {
-      if (locked || !session.place(char)) return;
+    function onPlace(char: string, slot?: number): void {
+      if (locked || !session.place(char, slot)) return;
       sfx.tick();
       refresh();
+    }
+
+    // Dropping on a blank fills that blank; dropping elsewhere on the board fills the first empty one.
+    function onDropChar(char: string, x: number, y: number): void {
+      const hit = document.elementFromPoint(x, y);
+      const blank = hit?.closest<HTMLElement>('.stage__blank');
+      if (blank?.dataset.slot !== undefined) onPlace(char, Number(blank.dataset.slot));
+      else if (hit && board.contains(hit)) onPlace(char);
     }
 
     function onRemove(slot: number): void {
@@ -122,7 +134,7 @@ export function createStagePage({ store, go }: PageContext): PageInstance {
 
     el.append(wrap);
     refresh();
-    fadeInUp([tag, title, board, wrap.querySelector('.stage__candidates') as HTMLElement, submit], { distance: 14 });
+    fadeInUp([tag, title, board, sources, wrap.querySelector('.stage__candidates') as HTMLElement, submit], { distance: 14 });
   }
 
   render();

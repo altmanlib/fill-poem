@@ -388,3 +388,15 @@ body {
   line-height: 1.7;
   color: var(--ink-soft);
 }
+
+.stage__sources {
+  width: 100%;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--ink-soft);
+}
+.stage__char.is-ghost {
+  opacity: 0.9;
+  box-shadow: 0 6px 14px rgb(0 0 0 / 25%);
+}

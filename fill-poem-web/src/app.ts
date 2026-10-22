@@ -1,3 +1,4 @@
+import { bgm } from './lib/bgm.ts';
 import { clearDebugParams, readDebugRoute } from './lib/debug.ts';
 import { createStore } from './lib/store.ts';
 import { createLoadingPage } from './pages/loading.ts';
@@ -23,6 +24,7 @@ const INITIAL: AppState = { stage: 0, badges: 0 };
 export function createApp(root: HTMLElement) {
   const store = createStore<AppState>(INITIAL);
   const router = createRouter({ root, routes, ctx: { store } });
+  bgm.autoStart();
 
   async function start(): Promise<void> {
     if (import.meta.env.DEV) {

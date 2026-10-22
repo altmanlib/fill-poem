@@ -31,4 +31,4 @@ updated: 2026-10-08
 |---|---|
 | [design/2026-09-29-01-user-flow.md](design/2026-09-29-01-user-flow.md) | 用户流程与页面状态机 |
 | [briefs/2026-10-08-01-panda-coin-h5-brief.md](briefs/2026-10-08-01-panda-coin-h5-brief.md) | 2027 熊猫金币上新互动 H5 创意方案摘要 |
-| [briefs/2027熊猫金币上新互动H5创意方案.pdf](briefs/2027熊猫金币上新互动H5创意方案.pdf) | 创意方案原件（PDF） |
+| [briefs/2027熊猫金币上新互动H5创意方案1008.pdf](briefs/2027熊猫金币上新互动H5创意方案1008.pdf) | 创意方案原件（PDF，1008 版） |

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Raw font files are not committed; ship the generated .woff2 subset instead
+*.ttf
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

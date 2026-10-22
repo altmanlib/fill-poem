@@ -4,6 +4,7 @@ import { createStore } from './lib/store.ts';
 import { createHomePage } from './pages/home.ts';
 import { createLoadingPage } from './pages/loading.ts';
 import { createRulesPage } from './pages/rules.ts';
+import { createStagePage } from './pages/stage.ts';
 import { createStubPage } from './pages/stub.ts';
 import { createRouter } from './router.ts';
 import type { AppState, PageFactory, RouteName } from './types.ts';
@@ -14,7 +15,7 @@ const routes: Record<RouteName, PageFactory> = {
   loading: createLoadingPage,
   home: createHomePage,
   rules: createRulesPage,
-  stage: createStubPage({ route: 'stage', title: '填字闯关', next: 'combine' }),
+  stage: createStagePage,
   combine: createStubPage({ route: 'combine', title: '道具合成页', next: 'intro', transition: 'revealBurst' }),
   intro: createStubPage({ route: 'intro', title: '新品信息介绍页', next: 'lottery' }),
   lottery: createStubPage({ route: 'lottery', title: '抽奖页', next: 'lead' }),

@@ -192,3 +192,127 @@ body {
   background: var(--green);
   border-radius: 50%;
 }
+
+/* Stage */
+.page--stage {
+  justify-content: flex-start;
+}
+.stage__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+.stage__tag {
+  align-self: flex-start;
+  padding: 8px 14px;
+  font-family: var(--font-display);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.stage__title {
+  font-family: var(--font-display);
+  font-size: 34px;
+  letter-spacing: 6px;
+}
+.stage__board {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 24px 12px;
+  border: 3px solid var(--line);
+  border-radius: 8px;
+  background: rgb(255 255 255 / 55%);
+}
+.stage__line {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 2;
+}
+.stage__blank {
+  display: inline-block;
+  width: 1.7em;
+  height: 1.7em;
+  margin: 0 2px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1.7em;
+  background: #f4dba3;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+}
+.stage__candidates {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stage__label {
+  padding: 6px 8px;
+  font-size: 12px;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+}
+.stage__pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stage__char {
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+}
+.stage__char.is-used {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.btn[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Modal */
+.modal {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgb(20 30 28 / 55%);
+}
+.modal__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 24px 20px;
+  text-align: center;
+  background: var(--page-bg);
+  border: 3px solid var(--line);
+  border-radius: 10px;
+}
+.modal__art {
+  max-width: 70%;
+}
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 26px;
+}
+.modal--win .modal__title {
+  color: #a33a22;
+  font-size: 34px;
+}
+.modal__text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}

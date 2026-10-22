@@ -1,11 +1,12 @@
 import { armEnter, fadeInUp } from '../anim/motion.ts';
+import { STAGES } from '../game/stages.ts';
 import { h } from '../lib/dom.ts';
 import { ph } from '../lib/ph.ts';
 import { FLAG_RULES_SEEN, hasFlag } from '../lib/session-flag.ts';
 import { sfx } from '../lib/sfx.ts';
 import type { PageContext, PageInstance } from '../types.ts';
 
-export function createHomePage({ go }: PageContext): PageInstance {
+export function createHomePage({ go, store }: PageContext): PageInstance {
   const prize = h(
     'button',
     {
@@ -28,8 +29,9 @@ export function createHomePage({ go }: PageContext): PageInstance {
       type: 'button',
       onclick: () => {
         sfx.tick();
-        // The rules page is shown at least once per session, then skipped.
-        void go(hasFlag(FLAG_RULES_SEEN) ? 'stage' : 'rules');
+        // Players who already collected all badges go straight to the lottery; the rules page is shown at least once per session.
+        if (store.get().badges >= STAGES.length) void go('lottery');
+        else void go(hasFlag(FLAG_RULES_SEEN) ? 'stage' : 'rules');
       }
     },
     '即刻出发'

@@ -5,6 +5,12 @@
 - 同目录导入仍用 `./`
 - 别名需在 `tsconfig.json`（`paths`）与 `vite.config.ts`（`resolve.alias`）两处同步配置
 
+## 后端质量门禁
+
+- `fill-poem-api` 提交前 `make fmt`、`make lint`、`make test` 须全部通过；`make test` 需要 compose 的 `db`（`docker compose up -d db`）
+- 技术栈与分层参照 `~/code/energytrust/wecombot`（echo、gorm、`bizerr` 统一错误码）；所有 `/api/v1` 路由必须挂在 `httpapi.Router.API`
+- `golangci-lint` 需用与本机 Go 同版本编译的版本，否则报 `export data version` 类 typecheck 错误
+
 ## Git 工作流
 
 - 开发分支使用 `dev`, 所有开发提交都在 `dev` 上, 不存在时从 `main` 创建

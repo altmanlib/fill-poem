@@ -27,14 +27,11 @@
 
 ## 进行中
 
-- R013 API 基础设施 — 参照 `~/code/energytrust/wecombot` 的技术栈与分层（echo v4、gorm + PostgreSQL、godotenv、`bizerr` 统一错误码、未上线阶段 `AutoMigrate`）；不引入 settings 表与配置 registry。包划分：`internal/config`、`internal/store`、`internal/bizerr`、`internal/httpapi`（请求日志 / recovery / CORS / 限流 / `/healthz` / `/readyz` / `/api/v1` 组），`cmd/server` 负责装配与优雅退出；`.env.example` 中的 `SESSION_SECRET`、`ADMIN_*` 等预留项等 R005、R022 再解析
-  - 已做：读了 wecombot 的 config / store / httpapi / bizerr / run
-  - 未做：依赖引入、各包实现与测试、`cmd/server` 装配、`make fmt` / `lint` / `test` 验收
-  - 注意：测试依赖 compose 的 `db`（`fillpoem_test` 库由 `init-db.sql` 创建）；质量门禁沿用 wecombot：提交前 `make fmt`、`make lint`、`make test` 全部通过
+- 暂无
 
 ## 下一步
 
-- 暂无
+- R025 部署与发布 — API 已有 `Dockerfile`、`compose.yml`、`scripts/release.sh`；补前端静态部署形态、域名与反向代理（同源部署时 `CORS_ALLOWED_ORIGINS` 留空、`TRUSTED_PROXIES` 填代理网段）、环境变量清单、发版检查表
 
 ## 规划中
 - R015 合成页与新品介绍页 — 四枚金章汇聚、高光合成圆形熊猫金币图样；解锁新币预告与活动介绍；动效与素材规划（依赖 R012、R023）
@@ -49,11 +46,11 @@
 - R028 设计稿反馈与补稿 — 反馈设计方：① 第四关候选字「千」误作「干」（010）；② 第四关通关弹窗按钮应为「前往见证」（011）；③ 留资页日期缺连接符（017）；④ 合成页画面与方案「熊猫抱金币」不同，需甲方确认（012）；⑤ loading 文案与方案略有出入（001）；⑥ 关卡页缺诗句出处的位置（方案要求展示，004~011 未画）；补稿：分享引导页、抽奖次数为 0 状态、留资校验与保存成功提示、未中奖用户点「获奖信息」的内容、入口②落地
 - R029 切图交付与占位替换 — 用户从 PSD 导出切图到 `fill-poem-web` 素材目录；约定命名（小写英文连字符）、倍率（2x）、格式（背景 JPG / WebP，带透明元素 PNG / WebP）与体积预算；前端按素材映射替换占位，艺术字标题与带特效元素切图，其余文案用 DOM 文本；切图到位后按设计稿重排闯关页诗句竖排版式与出处位置（依赖 R012、R023）
 - R024 移动端兼容与弱网验证 — 常见机型宽度、微信内置浏览器、iOS Safari、弱网下的 Loading 与提交重试
-- R025 部署与发布 — API 已有 `Dockerfile`、`compose.yml`、`scripts/release.sh`；补前端静态部署形态、域名与反向代理、环境变量清单、发版检查表（依赖 R013）
 - R026 主路径自动化测试 — 前端主路径（首页 → 闯关 → 合成 → 抽奖 → 留资）与 API 抽奖并发、次数幂等的测试（依赖 R017、R021）
 
 ## 已完成
 
+- R013 API 基础设施 — 参照 wecombot 的技术栈（echo v4、gorm + PostgreSQL、godotenv、`bizerr`、未上线阶段 `AutoMigrate`）；`internal/config`（校验、进程环境变量优先于 `.env`）、`store`、`bizerr`、`httpapi`（请求日志、recovery、CORS 白名单、按 IP 限流、受信代理 XFF、`/healthz` / `/readyz`、`/api/v1` 组、统一 JSON 错误）、`cmd/server` 优雅退出；预留的 `SESSION_SECRET` / `ADMIN_*` 从 `.env.example` 移除，等 R005、R022 再加回；`make fmt` / `lint` / `test` 全部通过 — 12fe9c9
 - R014 Loading 就绪清单与失败重试 — `lib/readiness.ts`：首屏图 + 方正小标宋字体（字体失败回退宋体，不阻塞）统一计进度；图片失败或超时（`VITE_LOADING_TIMEOUT_MS`，默认 15s）显示「网络开小差了，请检查网络后重试」与重试按钮；`tests/font-chars.test.ts` 校验源码文案字符都在字体子集 `chars.txt` 内 — 59527ec
 - R011 填字闯关玩法 — 4 关配置与诗句出处数据化（`game/stages.ts`）；拖拽（pointer 事件，落在空缺即填该格）与点击两种填入；答错两级规则；每关得一枚金章；正式题库待甲方确认；竖排版式移入 R029 — 1600c96
 - R010 回写用户流程文档 — 按创意方案重写 `docs/design/2026-09-29-01-user-flow.md`：入口、页面职责、4 关、答错两级、抽奖次数、留资、开放项对应 R005~R008、R014 — b0d49c9

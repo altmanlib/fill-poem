@@ -27,11 +27,14 @@
 
 ## 进行中
 
-- 暂无
+- R013 API 基础设施 — 参照 `~/code/energytrust/wecombot` 的技术栈与分层（echo v4、gorm + PostgreSQL、godotenv、`bizerr` 统一错误码、未上线阶段 `AutoMigrate`）；不引入 settings 表与配置 registry。包划分：`internal/config`、`internal/store`、`internal/bizerr`、`internal/httpapi`（请求日志 / recovery / CORS / 限流 / `/healthz` / `/readyz` / `/api/v1` 组），`cmd/server` 负责装配与优雅退出；`.env.example` 中的 `SESSION_SECRET`、`ADMIN_*` 等预留项等 R005、R022 再解析
+  - 已做：读了 wecombot 的 config / store / httpapi / bizerr / run
+  - 未做：依赖引入、各包实现与测试、`cmd/server` 装配、`make fmt` / `lint` / `test` 验收
+  - 注意：测试依赖 compose 的 `db`（`fillpoem_test` 库由 `init-db.sql` 创建）；质量门禁沿用 wecombot：提交前 `make fmt`、`make lint`、`make test` 全部通过
 
 ## 下一步
 
-- R013 API 基础设施 — 现状只有 `GET /healthz`、`slog` JSON 日志、优雅退出；补配置加载（`.env.example` 已预留 `SESSION_SECRET`、`ADMIN_*`、`TRUSTED_PROXIES`、登录限流项）、数据库连接与迁移工具选型、统一错误应答、请求日志、CORS 与限流；`make test` 目前无测试，随本任务建立第一批
+- 暂无
 
 ## 规划中
 - R015 合成页与新品介绍页 — 四枚金章汇聚、高光合成圆形熊猫金币图样；解锁新币预告与活动介绍；动效与素材规划（依赖 R012、R023）

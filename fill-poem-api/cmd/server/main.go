@@ -2,60 +2,55 @@ package main
 
 import (
 	"context"
-	"errors"
 	"log/slog"
-	"net/http"
 	"os"
-	"os/signal"
-	"syscall"
-	"time"
+
+	"github.com/altmanlib/fill-poem/fill-poem-api/internal/config"
+	"github.com/altmanlib/fill-poem/fill-poem-api/internal/httpapi"
+	"github.com/altmanlib/fill-poem/fill-poem-api/internal/store"
 )
 
 func main() {
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level: slog.LevelInfo,
-	}))
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}))
+	slog.SetDefault(logger)
 
-	host := envOr("APP_HOST", "127.0.0.1")
-	port := envOr("APP_PORT", "17073")
-	addr := host + ":" + port
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		_, _ = w.Write([]byte(`{"status":"ok"}`))
-	})
-
-	server := &http.Server{
-		Addr:              addr,
-		Handler:           mux,
-		ReadHeaderTimeout: 5 * time.Second,
-	}
-
-	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
-	defer stop()
-
-	go func() {
-		logger.Info("server listening", "addr", addr)
-		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			logger.Error("server failed", "err", err)
-			os.Exit(1)
-		}
-	}()
-
-	<-ctx.Done()
-	logger.Info("shutting down")
-
-	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	if err := server.Shutdown(shutdownCtx); err != nil {
-		logger.Error("shutdown failed", "err", err)
+	if err := serve(logger); err != nil {
+		logger.Error("server failed", "error", err)
 		os.Exit(1)
 	}
 }
 
-func envOr(key, fallback string) string {
-	if v := os.Getenv(key); v != "" {
-		return v
+// serve is the single assembly point: configuration, database, HTTP surface.
+func serve(logger *slog.Logger) error {
+	cfg, err := config.Load()
+	if err != nil {
+		return err
 	}
-	return fallback
+
+	ctx := context.Background()
+	db, err := store.Open(ctx, store.Config{URL: cfg.DatabaseURL, Logger: logger})
+	if err != nil {
+		return err
+	}
+	// Domain packages pass their entities here as they land (R016 onwards).
+	if err := db.Migrate(ctx); err != nil {
+		_ = db.Close()
+		return err
+	}
+
+	router := httpapi.NewRouter(httpapi.Deps{
+		Logger:             logger,
+		Readiness:          db.Ping,
+		CORSAllowedOrigins: cfg.CORSAllowedOrigins,
+		TrustedProxies:     cfg.TrustedProxies,
+		RateLimit:          cfg.RateLimit,
+		RateBurst:          cfg.RateBurst,
+	})
+
+	return run(ctx, runDeps{
+		Addr:       cfg.Addr(),
+		Handler:    router,
+		Logger:     logger,
+		CloseStore: db.Close,
+	})
 }

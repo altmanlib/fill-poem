@@ -56,7 +56,7 @@
 
 ## 已完成
 
-- R010 回写用户流程文档 — 按创意方案重写 `docs/design/2026-09-29-01-user-flow.md`：入口、页面职责、4 关、答错两级、抽奖次数、留资、开放项对应 R005~R008、R014 — (本次提交)
+- R010 回写用户流程文档 — 按创意方案重写 `docs/design/2026-09-29-01-user-flow.md`：入口、页面职责、4 关、答错两级、抽奖次数、留资、开放项对应 R005~R008、R014 — b0d49c9
 - R012 前端阶段骨架 — `fill-poem-web` 脚手架与 8 个路由真实视图：首页、规则页（会话内展示一次）、闯关页（4 关配置、答错两级规则、通关弹窗）、合成、新品介绍、抽奖（次数与中奖为前端 mock）、留资（本地校验）；系统返回键守卫；浏览器走通全流程（插画为占位，真机未测）— c884ebf、eaa56b5
 - R004 创意方案摘要入库 — `docs/briefs/2026-10-08-01-panda-coin-h5-brief.md` 与 PDF 原件：4 关集章、合成展示、新品介绍、抽奖、分享加次数、留资的活动闭环 — da05416
 - R003 拆分 fill-poem-web 与 fill-poem-api — `fill-poem-api`（Go）：`GET /healthz`、JSON 日志、优雅退出、`Dockerfile`、`compose.yml`（Postgres 18 + Adminer）、`Makefile`、`scripts/release.sh`、`.golangci.yml`；`fill-poem-web`（Vite）迁入子目录；本地端口 17327 / 17073 / 11004 / 19299 — 2db8528

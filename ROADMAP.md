@@ -15,7 +15,7 @@
 
 产品输入：[docs/briefs/2026-10-08-01-panda-coin-h5-brief.md](docs/briefs/2026-10-08-01-panda-coin-h5-brief.md)（活动「竹林雅集 · 国宝寻金」，4 关集章 → 合成 → 新品介绍 → 抽奖 → 留资 / 分享）。流程与页面以 [docs/design/2026-09-29-01-user-flow.md](docs/design/2026-09-29-01-user-flow.md) 为准
 
-设计稿输入：`docs/design/preview-1022/`（19 页 JPG + PSD，覆盖方案全部页面，缺分享引导页；750×1440）。前端开发先用占位素材，切图由用户从 PSD 导出后替换（R029）
+设计稿输入：`docs/design/preview-1022/`（不入库，只存本地；19 页 JPG + PSD，覆盖方案全部页面，缺分享引导页；750×1440）。前端开发先用占位素材，切图由用户从 PSD 导出后替换（R029）
 
 ## 待决策
 
@@ -31,7 +31,6 @@
 
 ## 下一步
 
-- R027 设计稿入库 — `docs/design/preview-1022/` 只提交 JPG，PSD 写入 `.gitignore` 另行存放（单个 7~81MB，合计约 1.3GB）；文件名保持设计方原名；在 `docs/README.md` 建立索引
 - R030 前端说明文档 — 把 `fill-poem-web` 的目录结构、开发命令（`bun run dev` / `verify`）、`?debug=<route>` 路由跳转、占位素材与映射约定、字体子集流程写入 `docs/` 并更新索引
 
 ## 规划中

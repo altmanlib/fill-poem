@@ -25,6 +25,9 @@ fill-poem-api/build/
 *.out
 coverage.out
 
+# Design drafts (JPG / PSD) stay local, never committed
+docs/design/preview-*/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

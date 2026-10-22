@@ -24,6 +24,7 @@ updated: 2026-10-08
 | `fill-poem-web` | 前端（Vite） |
 | `fill-poem-api` | 后端（Go，`github.com/altmanlib/fill-poem/fill-poem-api`） |
 | `prototype` | 早期原型，仅供参考 |
+| `docs/design/preview-*/` | 设计稿（JPG / PSD），不入库，只存本地，已在根 `.gitignore` 排除 |
 
 ## 3. 文档目录
 

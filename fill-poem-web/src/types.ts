@@ -25,6 +25,8 @@ export interface PageInstance {
   el: HTMLElement;
   enter?: () => void | Promise<void>;
   leave?: () => void | Promise<void>;
+  /** System back key / gesture. Without it the press is swallowed and the user stays on the page. */
+  back?: () => void;
   destroy?: () => void;
 }
 

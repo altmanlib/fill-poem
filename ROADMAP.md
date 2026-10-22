@@ -28,8 +28,8 @@
 ## 进行中
 
 - R012 前端阶段骨架 — `fill-poem-web` 以 `~/code/pingan/blindbox/blindbox-web` 为脚手架（Vite + TypeScript + animejs + vitest + biome）；搭 Loading / 首页 / 规则 / 闯关 / 合成 / 新品介绍 / 抽奖 / 留资视图与状态机，会话内标记规则至少展示一次，系统返回键不破坏状态（流程文档 O4）；图片素材统一经一处映射引用，未切图的用占位（`src/lib/ph.ts`），R029 交付后只替换文件不改代码（依赖 R010，用户已决定先行开工，页面清单以方案与 1022 设计稿为准）
-  - 已做：脚手架落地，复用路由与转场、store、预加载、占位组件；8 个路由（loading / home / rules / stage / combine / intro / lottery / lead）可依次点击走通，除 loading 外均为占位页；`bun run verify` 通过（typecheck、lint、2 个测试文件、build）
-  - 未做：各页真实视图；规则页「会话内至少展示一次」与系统返回键处理；通关 / 答错 / 抽奖结果弹窗层；移动端真机与浏览器目测（本次只跑了命令行验证，未在浏览器打开）；`fill-poem-web` 说明写入 `docs/`
+  - 已做：脚手架落地，复用路由与转场、store、预加载、占位组件；8 个路由（loading / home / rules / stage / combine / intro / lottery / lead）可依次点击走通；首页与规则页真实视图（文案按方案，插画为占位）；规则页会话内至少展示一次（`session-flag`，首页「即刻出发」据此跳过）；路由层系统返回键守卫，页面经 `PageInstance.back` 自行处理，无处理则吞掉；`bun run verify` 通过（typecheck、lint、4 个测试文件、build）
+  - 未做：闯关 / 合成 / 新品介绍 / 抽奖 / 留资页真实视图（stage、lead 返回键策略随页面定）；通关 / 答错 / 抽奖结果弹窗层；移动端真机与浏览器目测（本次只跑了命令行验证，未在浏览器打开）；`fill-poem-web` 说明写入 `docs/`
   - 注意：未带入脚手架中的业务内容与 `energytrust` 微信授权 / JS-SDK / 账号身份 / mock API，这些取决于 R005、R007、R013，对应任务内再引入；背景音乐（`public/music/` 的 mp3）与点击音效（`src/lib/sfx.ts` 运行时合成）为临时沿用 blindbox，后续替换；`index.html` 未引入 `jweixin` 脚本；API 代理目标写死为 `localhost:17073`
 
 ## 下一步

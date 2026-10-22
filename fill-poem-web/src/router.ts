@@ -24,6 +24,14 @@ export function createRouter({ root, routes, ctx }: RouterOpts): Router {
   let currentName: RouteName | null = null;
   let busy = false;
 
+  // History guard: keep one entry ahead so the system back key triggers popstate
+  // instead of leaving the app; the press is routed to the current page's back().
+  history.pushState({ guard: true }, '');
+  window.addEventListener('popstate', () => {
+    history.pushState({ guard: true }, '');
+    if (!busy) current?.back?.();
+  });
+
   async function navigate(name: RouteName, { transition = 'fade', data }: { transition?: TransitionName; data?: unknown } = {}): Promise<void> {
     if (busy || name === currentName) return;
     const factory = routes[name];

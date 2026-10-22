@@ -9,7 +9,7 @@
 
 - `fill-poem-api` 提交前 `make fmt`、`make lint`、`make test` 须全部通过；`make test` 需要 compose 的 `db`（`docker compose up -d db`）
 - 技术栈与分层参照 `~/code/energytrust/wecombot`（echo、gorm、`bizerr` 统一错误码）；所有 `/api/v1` 路由必须挂在 `httpapi.Router.API`
-- `golangci-lint` 需用与本机 Go 同版本编译的版本，否则报 `export data version` 类 typecheck 错误
+- `golangci-lint` 用 brew 安装的版本；Go 升级后若报 `export data version` 类 typecheck 错误，先 `brew upgrade golangci-lint`，并确认 `~/go/bin` 下没有残留的旧版本盖住它
 
 ## Git 工作流
 

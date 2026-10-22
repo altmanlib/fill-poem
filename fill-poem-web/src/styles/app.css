@@ -1,0 +1,97 @@
+body {
+  font-family: var(--font-body);
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  background: #1c2a28;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  max-width: var(--stage-max);
+  height: 100%;
+  overflow: hidden;
+  background: var(--page-bg);
+}
+
+.page-layer {
+  position: absolute;
+  inset: 0;
+  will-change: opacity, transform;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: calc(var(--safe-top) + 20px) 22px calc(var(--safe-bottom) + 22px);
+  background: var(--page-bg);
+  color: var(--ink);
+}
+
+.btn {
+  min-width: 160px;
+  padding: 12px 28px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #fff;
+  background: var(--brown);
+  border-radius: var(--radius);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Illustration placeholder, see src/lib/ph.ts */
+.ph {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 60%;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+.ph__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.stub__title {
+  font-family: var(--font-display);
+  font-size: 24px;
+}
+.stub__art {
+  flex: 0 1 auto;
+}
+
+.loading__bar {
+  width: 70%;
+  height: 12px;
+  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+}
+.loading__bar-fill {
+  width: 0;
+  height: 100%;
+  background: var(--green);
+}
+.loading__pct {
+  font-size: 14px;
+  color: var(--ink-soft);
+}

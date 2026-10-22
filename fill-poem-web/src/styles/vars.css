@@ -1,0 +1,20 @@
+:root {
+  /* Palette sampled from the 1022 design previews (cream paper, ink green, brown buttons, gold accent). */
+  --page-bg: #fbf9ef;
+  --ink: #1f3a3a;
+  --ink-soft: #4d6360;
+  --green: #5c8f6e;
+  --brown: #8a5a2e;
+  --gold: #e0a43a;
+  --line: #d9c7a3;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Design previews are 750 wide (2x of 375). */
+  --stage-max: 460px;
+  --radius: 14px;
+
+  --font-body: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-display: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+}

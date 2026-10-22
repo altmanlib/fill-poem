@@ -8,7 +8,7 @@
 
 | 路径 | 说明 |
 |---|---|
-| `fill-poem-web` | 前端（Vite） |
+| `fill-poem-web` | 前端（Vite + TypeScript，原生 DOM + animejs） |
 | `fill-poem-api` | 后端（Go） |
 | `docs` | 设计与说明文档 |
 | `prototype` | 早期原型，仅供参考 |
@@ -27,8 +27,8 @@
 ```bash
 cd fill-poem-web
 bun install
-bun run dev
-bun run build
+bun run dev       # :17327
+bun run verify    # typecheck + lint + test + build
 ```
 
 ## 后端
